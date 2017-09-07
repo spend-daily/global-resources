@@ -21,7 +21,7 @@ Parameters:
     Default: global-stack
 
 Resources:
-  GlobalStackExecutionRole:
+  GlobalStackRole:
     Type: AWS::IAM::Role
     DeletionPolicy: Retain
     Properties:
@@ -191,6 +191,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 StackName: !Ref GlobalStack
+                RoleArn: !Ref GlobalStackRole
               RunOrder: 1
             - Name: ExecuteChangeSet
               ActionTypeId:
@@ -201,6 +202,7 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
                 StackName: !Ref GlobalStack
+                RoleArn: !Ref GlobalStackRole
               RunOrder: 1
 
 Outputs:
