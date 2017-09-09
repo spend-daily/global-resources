@@ -43,6 +43,11 @@ Resources:
                 Effect: Allow
                 Action:
                   - iam:*
+                  - cloudformation:*
+                  - codepipeline:*
+                  - codebuild:*
+                  - lambda:*
+                  - s3:*
   GlobalBuildServiceRole:
     Type: AWS::IAM::Role
     Properties:
@@ -76,7 +81,6 @@ Resources:
                   - codebuild:*
                   - iam:*
                   - lambda:*
-
   GlobalPipelineServiceRole:
     Type: AWS::IAM::Role
     Properties:
