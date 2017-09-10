@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: Global stack for Spend Daily
 Parameters:
   GitHubRepo:
@@ -35,9 +35,9 @@ Resources:
             Action:
               - sts:AssumeRole
       Policies:
-        - PolicyName: global-stack-cloudform-policy
+        - PolicyName: global-stack-cloudformation-policy
           PolicyDocument:
-            Version: 2012-10-17
+            Version: "2012-10-17"
             Statement:
               - Resource: "*"
                 Effect: Allow
@@ -48,7 +48,7 @@ Resources:
                   - codebuild:*
                   - lambda:*
                   - s3:*
-  GlobalBuildServiceRole:
+  GlobalBuildRole:
     Type: AWS::IAM::Role
     Properties:
       Path: /
@@ -63,7 +63,7 @@ Resources:
       Policies:
         - PolicyName: global-code-build-policy
           PolicyDocument:
-            Version: 2012-10-17
+            Version: "2012-10-17"
             Statement:
               - Resource: "*"
                 Effect: Allow
@@ -81,7 +81,7 @@ Resources:
                   - codebuild:*
                   - iam:*
                   - lambda:*
-  GlobalPipelineServiceRole:
+  GlobalPipelineRole:
     Type: AWS::IAM::Role
     Properties:
       Path: /
@@ -96,7 +96,7 @@ Resources:
       Policies:
         - PolicyName: global-pipeline-policy
           PolicyDocument:
-            Version: 2012-10-17
+            Version: "2012-10-17"
             Statement:
               - Resource:
                   - !Sub arn:aws:s3:::${GlobalArtifactBucket}/*
@@ -142,13 +142,13 @@ Resources:
           - Name: AWS_DEFAULT_REGION
             Value: !Ref AWS::Region
       Name: !Ref AWS::StackName
-      ServiceRole: !Ref GlobalBuildServiceRole
+      ServiceRole: !Ref GlobalBuildRole
 
   GlobalPipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
       Name: GlobalPipeline
-      RoleArn: !GetAtt GlobalPipelineServiceRole.Arn
+      RoleArn: !GetAtt GlobalPipelineRole.Arn
       ArtifactStore:
         Type: S3
         Location: !Ref GlobalArtifactBucket
@@ -190,24 +190,26 @@ Resources:
               ActionTypeId:
                 Category: Deploy
                 Owner: AWS
-                Version: 1
                 Provider: CloudFormation
+                Version: 1
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
+                ChangeSetName: GlobalChangeSet
+                RoleArn: !GetAtt GlobalStackRole.Arn
                 StackName: !Ref GlobalStack
-                RoleArn: !Ref GlobalStackRole
               RunOrder: 1
             - Name: ExecuteChangeSet
               ActionTypeId:
                 Category: Deploy
                 Owner: AWS
-                Version: 1
                 Provider: CloudFormation
+                Version: 1
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
+                ChangeSetName: GlobalChangeSet
+                RoleArn: !GetAtt GlobalStackRole.Arn
                 StackName: !Ref GlobalStack
-                RoleArn: !Ref GlobalStackRole
-              RunOrder: 1
+              RunOrder: 2
 
 Outputs:
   PipelineUrl:
