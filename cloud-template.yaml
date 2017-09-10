@@ -197,6 +197,9 @@ Resources:
                 ChangeSetName: GlobalChangeSet
                 RoleArn: !GetAtt GlobalStackRole.Arn
                 StackName: !Ref GlobalStack
+                TemplatePath: CloudFormation::cloud-formation.yaml
+              InputArtifacts:
+                - Name: CloudFormation
               RunOrder: 1
             - Name: ExecuteChangeSet
               ActionTypeId:
