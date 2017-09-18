@@ -114,6 +114,7 @@ Resources:
                   - codebuild:BatchGetBuilds
                   - cloudformation:*
                   - iam:PassRole
+                  - s3:GetObject
 
   GlobalArtifactBucket:
     Type: AWS::S3::Bucket
