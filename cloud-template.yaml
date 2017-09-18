@@ -104,9 +104,6 @@ Resources:
                 Effect: Allow
                 Action:
                   - s3:PutObject
-                  - s3:GetObject
-                  - s3:GetObjectVersion
-                  - s3:GetBucketVersioning
               - Resource: "*"
                 Effect: Allow
                 Action:
@@ -115,6 +112,8 @@ Resources:
                   - cloudformation:*
                   - iam:PassRole
                   - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketVersioning
 
   GlobalArtifactBucket:
     Type: AWS::S3::Bucket
