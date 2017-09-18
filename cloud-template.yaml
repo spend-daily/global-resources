@@ -11,6 +11,7 @@ Parameters:
 
   GitHubToken:
     Type: String
+    Default: "deadbeef"
 
   GitHubUser:
     Type: String
