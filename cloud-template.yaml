@@ -199,12 +199,6 @@ Resources:
                 RoleArn: !GetAtt GlobalStackRole.Arn
                 StackName: !Ref GlobalStack
                 TemplatePath: CloudFormation::cloud-formation.yaml
-                TemplateConfiguration:
-                  Parameters:
-                    GitHubUser: !Ref GitHubUser
-                    GitHubRepo: !Ref GitHubRepo
-                    GitHubBranch: !Ref GitHubBranch
-                    GitHubToken: !Ref GitHubToken
               InputArtifacts:
                 - Name: CloudFormation
               RunOrder: 1
