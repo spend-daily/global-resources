@@ -195,6 +195,7 @@ Resources:
                 Version: 1
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
+                Capabilities: CAPABILITY_IAM
                 ChangeSetName: GlobalChangeSet
                 RoleArn: !GetAtt GlobalStackRole.Arn
                 StackName: !Ref GlobalStack
