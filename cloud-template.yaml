@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Global stack for Spend Daily
+
 Parameters:
   GitHubRepo:
     Type: String
@@ -30,6 +31,24 @@ Parameters:
     Default: password
 
 Resources:
+  GlobalStackPolicy:
+    Type: "AWS::IAM::Policy"
+      Properties:
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Resource: "*"
+              Effect: Allow
+              Action:
+                - iam:*
+                - cloudformation:*
+                - codepipeline:*
+                - codebuild:*
+                - lambda:*
+                - rds:*
+                - s3:*
+        PolicyName: global-stack-cloudformation-policy
+
   GlobalStackRole:
     Type: AWS::IAM::Role
     DeletionPolicy: Retain
@@ -44,20 +63,8 @@ Resources:
             Action:
               - sts:AssumeRole
       Policies:
-        - PolicyName: global-stack-cloudformation-policy
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Resource: "*"
-                Effect: Allow
-                Action:
-                  - iam:*
-                  - cloudformation:*
-                  - codepipeline:*
-                  - codebuild:*
-                  - lambda:*
-                  - rds:*
-                  - s3:*
+        - !Ref GlobalStackPolicy
+
   GlobalBuildRole:
     Type: AWS::IAM::Role
     Properties:
@@ -91,6 +98,7 @@ Resources:
                   - codebuild:*
                   - iam:*
                   - lambda:*
+
   GlobalPipelineRole:
     Type: AWS::IAM::Role
     Properties:
