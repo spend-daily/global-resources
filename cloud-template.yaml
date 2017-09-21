@@ -264,13 +264,13 @@ Outputs:
 
   GlobaDataBaseAddress:
     Description: Address for the global DB
-    Value: !Ref GlobalDataBase.Address
+    Value: !GetAtt GlobalDataBase.Address
     Export:
       Name: spend-daily-global-db-address
 
   GlobaDataBasePort:
     Description: Port for the global DB
-    Value: !Ref GlobalDataBase.Port
+    Value: !GetAtt GlobalDataBase.Port
     Export:
       Name: spend-daily-global-db-port
 
