@@ -264,13 +264,19 @@ Outputs:
 
   GlobaDataBaseAddress:
     Description: Address for the global DB
-    Value: !GetAtt GlobalDataBase.Address
+    Value:
+      Fn::GetAtt:
+        - GlobalDataBase
+        - Endpoint.Address
     Export:
       Name: spend-daily-global-db-address
 
   GlobaDataBasePort:
     Description: Port for the global DB
-    Value: !GetAtt GlobalDataBase.Port
+    Value:
+      Fn::GetAtt:
+        - GlobalDataBase
+        - Endpoint.Port
     Export:
       Name: spend-daily-global-db-port
 
