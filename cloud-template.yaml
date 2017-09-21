@@ -44,6 +44,7 @@ Resources:
               - cloudformation:*
               - codepipeline:*
               - codebuild:*
+              - ec2:*
               - lambda:*
               - rds:*
               - s3:*
