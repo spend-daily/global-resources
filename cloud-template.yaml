@@ -33,21 +33,21 @@ Parameters:
 Resources:
   GlobalStackPolicy:
     Type: "AWS::IAM::Policy"
-      Properties:
-        PolicyDocument:
-          Version: "2012-10-17"
-          Statement:
-            - Resource: "*"
-              Effect: Allow
-              Action:
-                - iam:*
-                - cloudformation:*
-                - codepipeline:*
-                - codebuild:*
-                - lambda:*
-                - rds:*
-                - s3:*
-        PolicyName: global-stack-cloudformation-policy
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Resource: "*"
+            Effect: Allow
+            Action:
+              - iam:*
+              - cloudformation:*
+              - codepipeline:*
+              - codebuild:*
+              - lambda:*
+              - rds:*
+              - s3:*
+      PolicyName: global-stack-cloudformation-policy
 
   GlobalStackRole:
     Type: AWS::IAM::Role
