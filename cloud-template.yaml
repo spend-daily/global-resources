@@ -62,7 +62,7 @@ Resources:
                 - cloudformation.amazonaws.com
             Action:
               - sts:AssumeRole
-      Policies:
+      ManagedPolicyArns:
         - !Ref GlobalStackPolicy
 
   GlobalBuildRole:
