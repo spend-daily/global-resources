@@ -306,7 +306,7 @@ Outputs:
     Description: Role that can be used for Stacks
     Value: !GetAtt GlobalStackRole.Arn
     Export:
-      Name: spend-daily-global-stack-role
+      Name: spend-daily-global-stack-role-arn
 
   GlobalBuildRole:
     Description: Role that can be used for Builds
@@ -318,7 +318,7 @@ Outputs:
     Description: Role that can be used for Pipelines
     Value: !GetAtt GlobalPipelineRole.Arn
     Export:
-      Name: spend-daily-global-pipeline-role
+      Name: spend-daily-global-pipeline-role-arn
 
   GlobalArtifactBucket:
     Description: Bucket that should be used for Pipelines and such
