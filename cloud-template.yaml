@@ -301,3 +301,27 @@ Outputs:
     Value: !Ref GlobalDataBasePassword
     Export:
       Name: spend-daily-global-db-password
+
+  GlobalStackRoleArn:
+    Description: Role that can be used for Stacks
+    Value: !GetAtt GlobalStackRole.Arn
+    Export:
+      Name: spend-daily-global-stack-role
+
+  GlobalBuildRole:
+    Description: Role that can be used for Builds
+    Value: !Ref GlobalBuildRole
+    Export:
+      Name: spend-daily-global-build-role
+
+  GlobalPipelineRoleArn:
+    Description: Role that can be used for Pipelines
+    Value: !GetAtt GlobalPipelineRole.Arn
+    Export:
+      Name: spend-daily-global-pipeline-role
+
+  GlobalArtifactBucket:
+    Description: Bucket that should be used for Pipelines and such
+    Value: !Ref GlobalArtifactBucket
+    Export:
+      Name: spend-daily-global-artifact-bucket
