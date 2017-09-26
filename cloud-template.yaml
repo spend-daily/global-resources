@@ -270,7 +270,7 @@ Outputs:
     Description: GitHub authentication token
     Value: !Ref GitHubToken
     Export:
-      Name: spend-daily-git-hub-token
+      Name: spend-daily-github-token
 
   GlobaDataBaseAddress:
     Description: Address for the global DB
