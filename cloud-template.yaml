@@ -247,6 +247,26 @@ Resources:
                 StackName: !Ref GlobalStack
               RunOrder: 2
 
+  GlobalVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+
+  GlobalSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-west-2
+      CidrBlock: 10.0.0.0/24
+      VpcId: !Ref GlobalVPC
+
+  GlobalSecurityGroup:
+    Type: AWS::RDS::EC2SecurityGroup
+    Properties:
+      GroupName: GlobalSecurityGroup
+      GroupDescription: Access to the Globa VPC
+      VpcId: !Ref GlobalVPC
+
   GlobalDataBase:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -256,11 +276,14 @@ Resources:
       DBInstanceClass: db.t2.micro
       DBInstanceIdentifier: spend
       DBName: spend
+      DBSubnetGroupName: !Ref GlobalSubnet
       Engine: postgres
       EngineVersion: 9.6.3
       MasterUsername: !Ref GlobalDataBaseUser
       MasterUserPassword: !Ref GlobalDataBasePassword
       PubliclyAccessible: true
+      VPCSecurityGroups:
+      - !Ref GlobalSecurityGroup
 
 Outputs:
   PipelineUrl:
@@ -325,3 +348,15 @@ Outputs:
     Value: !Ref GlobalArtifactBucket
     Export:
       Name: spend-daily-global-artifact-bucket
+
+  GlobalSecurityGroup:
+    Description: Security Group that should be used for internal services
+    Values: !GetAtt GlobalSecurityGroup.GroupId
+    Export:
+      Name: spend-daily-global-security-group-id
+
+  GlobalSubnet:
+    Description: Subnet for default internal services
+    Values: !Ref GlobalSubnet
+    Export:
+      Name: spend-daily-global-subnet
