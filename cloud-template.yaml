@@ -253,18 +253,18 @@ Resources:
       CidrBlock: 10.0.0.0/16
       EnableDnsHostnames: true
 
-  GlobalSubnetWest2b:
+  GlobalSubnetWest2a:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-west-2a
       CidrBlock: 10.0.0.0/24
       VpcId: !Ref GlobalVPC
 
-  GlobalSubnetWest2a:
+  GlobalSubnetWest2b:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-west-2b
-      CidrBlock: 10.0.0.0/24
+      CidrBlock: 10.0.1.0/24
       VpcId: !Ref GlobalVPC
 
   GlobalSecurityGroup:
