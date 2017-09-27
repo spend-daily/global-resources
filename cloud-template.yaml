@@ -372,6 +372,6 @@ Outputs:
 
   GlobalSubnetWest2a:
     Description: Subnet for default internal services
-    Value: !Ref GlobalSubnet
+    Value: !Ref GlobalSubnetWest2a
     Export:
       Name: spend-daily-global-subnet-us-west-2a
