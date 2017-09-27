@@ -351,12 +351,12 @@ Outputs:
 
   GlobalSecurityGroup:
     Description: Security Group that should be used for internal services
-    Values: !GetAtt GlobalSecurityGroup.GroupId
+    Value: !GetAtt GlobalSecurityGroup.GroupId
     Export:
       Name: spend-daily-global-security-group-id
 
   GlobalSubnet:
     Description: Subnet for default internal services
-    Values: !Ref GlobalSubnet
+    Value: !Ref GlobalSubnet
     Export:
       Name: spend-daily-global-subnet
