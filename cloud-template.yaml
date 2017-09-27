@@ -260,7 +260,7 @@ Resources:
       VpcId: !Ref GlobalVPC
 
   GlobalSecurityGroup:
-    Type: AWS::RDS::EC2SecurityGroup
+    Type: AWS::EC2::SecurityGroup
     Properties:
       GroupName: GlobalSecurityGroup
       GroupDescription: Access to the Globa VPC
