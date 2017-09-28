@@ -292,6 +292,7 @@ Resources:
       DBInstanceIdentifier: spend-global
       DBName: spend
       DBSubnetGroupName: !Ref GlobalDBSubnetGroup
+      DeletionPolicy: Retain
       Engine: postgres
       EngineVersion: 9.6.3
       MasterUsername: !Ref GlobalDataBaseUser
