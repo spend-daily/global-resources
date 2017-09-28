@@ -296,7 +296,7 @@ Resources:
       EngineVersion: 9.6.3
       MasterUsername: !Ref GlobalDataBaseUser
       MasterUserPassword: !Ref GlobalDataBasePassword
-      PubliclyAccessible: true
+      PubliclyAccessible: false
       VPCSecurityGroups:
       - !Ref GlobalSecurityGroup
 
