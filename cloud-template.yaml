@@ -142,9 +142,10 @@ Resources:
           - Resource: "*"
             Effect: Allow
             Action:
-              - ec2:DescribeInstances
-              - ec2:CreateNetworkInterface
               - ec2:AttachNetworkInterface
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeInstances
+              - ecs:DeleteNetworkInterface
               - ec2:DescribeNetworkInterfaces
               - autoscaling:CompleteLifecycleAction
       ManagedPolicyName: global-vpc-policy
