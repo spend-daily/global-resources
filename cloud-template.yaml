@@ -253,17 +253,17 @@ Resources:
       CidrBlock: 10.0.0.0/16
       EnableDnsHostnames: true
 
+  GlobalSubnetWest2a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-west-2a
+      CidrBlock: 10.0.0.0/24
+      VpcId: !Ref GlobalVPC
+
   GlobalSubnetWest2b:
     Type: AWS::EC2::Subnet
     Properties:
       AvailabilityZone: us-west-2b
-      CidrBlock: 10.0.0.0/24
-      VpcId: !Ref GlobalVPC
-
-  GlobalSubnetWest2c:
-    Type: AWS::EC2::Subnet
-    Properties:
-      AvailabilityZone: us-west-2c
       CidrBlock: 10.0.1.0/24
       VpcId: !Ref GlobalVPC
 
@@ -279,17 +279,17 @@ Resources:
     Properties:
       DBSubnetGroupDescription: A security group for databases
       SubnetIds:
-        - GlobalSubnetWest2b
-        - GlobalSubnetWest2c
+        - !Ref GlobalSubnetWest2a
+        - !Ref GlobalSubnetWest2b
 
   GlobalDataBase:
     Type: AWS::RDS::DBInstance
     Properties:
       AllocatedStorage: 10
-      AvailabilityZone: us-west-2b
+      AvailabilityZone: us-west-2a
       BackupRetentionPeriod: 7
       DBInstanceClass: db.t2.micro
-      DBInstanceIdentifier: spend
+      DBInstanceIdentifier: spend-global
       DBName: spend
       DBSubnetGroupName: !Ref GlobalDBSubnetGroup
       Engine: postgres
@@ -370,8 +370,8 @@ Outputs:
     Export:
       Name: spend-daily-global-security-group-id
 
-  GlobalSubnetWest2b:
+  GlobalSubnetWest2a:
     Description: Subnet for default internal services
-    Value: !Ref GlobalSubnetWest2b
+    Value: !Ref GlobalSubnetWest2a
     Export:
-      Name: spend-daily-global-subnet-us-west-2b
+      Name: spend-daily-global-subnet-us-west-2a
