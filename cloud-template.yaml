@@ -279,8 +279,8 @@ Resources:
     Properties:
       DBSubnetGroupDescription: A security group for databases
       SubnetIds:
-        - GlobalSubnetWest2a
         - GlobalSubnetWest2b
+        - GlobalSubnetWest2c
 
   GlobalDataBase:
     Type: AWS::RDS::DBInstance
