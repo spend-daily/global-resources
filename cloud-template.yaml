@@ -133,6 +133,22 @@ Resources:
                   - s3:GetObjectVersion
                   - s3:GetBucketVersioning
 
+  GlobalVpcPolicy:
+    Type: "AWS::IAM::ManagedPolicy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Resource: "*"
+            Effect: Allow
+            Action:
+              - ec2:DescribeInstances
+              - ec2:CreateNetworkInterface
+              - ec2:AttachNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - autoscaling:CompleteLifecycleAction
+      ManagedPolicyName: global-vpc-policy
+
   GlobalArtifactBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
@@ -375,3 +391,9 @@ Outputs:
     Value: !Ref GlobalSubnetWest2a
     Export:
       Name: spend-daily-global-subnet-us-west-2a
+
+  GlobalVpcPolicy:
+    Description: A global policy that allows services to attach VPCs
+    Value: !Ref GlobalVpcPolicy
+    Export:
+      Name: spend-daily-global-vpc-policy
