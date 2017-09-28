@@ -392,6 +392,12 @@ Outputs:
     Export:
       Name: spend-daily-global-subnet-us-west-2a
 
+  GlobalSubnetWest2b:
+    Description: Subnet for default internal services
+    Value: !Ref GlobalSubnetWest2b
+    Export:
+      Name: spend-daily-global-subnet-us-west-2b
+
   GlobalVpcPolicy:
     Description: A global policy that allows services to attach VPCs
     Value: !Ref GlobalVpcPolicy
