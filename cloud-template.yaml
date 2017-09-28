@@ -370,8 +370,8 @@ Outputs:
     Export:
       Name: spend-daily-global-security-group-id
 
-  GlobalSubnetWest2a:
+  GlobalSubnetWest2b:
     Description: Subnet for default internal services
-    Value: !Ref GlobalSubnetWest2a
+    Value: !Ref GlobalSubnetWest2b
     Export:
-      Name: spend-daily-global-subnet-us-west-2a
+      Name: spend-daily-global-subnet-us-west-2b
