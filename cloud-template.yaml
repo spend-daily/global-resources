@@ -48,6 +48,7 @@ Resources:
               - lambda:*
               - rds:*
               - s3:*
+              - apigateway:*
       ManagedPolicyName: global-stack-cloudformation-policy
 
   GlobalStackRole:
